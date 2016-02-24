@@ -7,5 +7,7 @@
     <orderEntry type="library" name="TRAFFICREPORTS_js223kz node_modules" level="project" />
     <orderEntry type="library" name="ejs-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="express-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="angularjs-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="angular" level="application" />
   </component>
 </module>
