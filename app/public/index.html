@@ -1,21 +1,35 @@
 <!doctype html>
 
-<html lang="en">
+<html ng-app="trafficApp" lang="en">
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
+    <title>Trafikrapport</title>
+    <meta name="description" content="Trafikinformation i Sverige">
+    <meta name="author" content="Johanna Szepanski">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Trafikrapport</title>
-  <meta name="description" content="Trafikinformation i Sverige">
-  <meta name="author" content="Johanna Szepanski">
-
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
-
-  <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    
+     <!-- HTML5 elements in IE --> 
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
-
 <body>
-  <script src="js/scripts.js"></script>
+    <h1>testar /</h1>
+    <!-- Partials --> 
+    <div ui-view class="viewcontainer"></div>
+
+    <!-- CDN --> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    <!-- Application resources --> 
+    <script src="/public/app.js"></script>
 </body>
 </html>
