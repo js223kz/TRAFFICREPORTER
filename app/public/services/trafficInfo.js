@@ -1,8 +1,8 @@
 "use strict";
-trafficApp.service('TrafficInfoService', function($http) {
+trafficApp.service('TrafficInfoService', ($http) =>{
     return {
-        get : function() {
-            return $http.get('/api/trafficinfo');
+        get : () =>{
+           return $http.get('/api/trafficinfo');            
         }
     }
 });

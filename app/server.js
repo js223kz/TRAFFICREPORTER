@@ -1,9 +1,12 @@
+"use strict";
 // set up ========================
-var express  = require('express');
-var app      = express();                               
-var morgan = require('morgan');            
-var bodyParser = require('body-parser'); 
-var port = process.env.PORT || 8080;
+let express  = require('express'),
+    app      = express(),
+    server     = require('http').createServer(app),
+    io = require('socket.io')(server),
+    morgan = require('morgan'),           
+    bodyParser = require('body-parser'), 
+    port = process.env.PORT || 8080;
 
 
 // configuration =================
@@ -16,6 +19,16 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 // routes ======================================================================
 require('./routes.js')(app);
 
+io.on('connection', function(client) {  
+    console.log('Client connected...');
+
+    client.on('join', function(data) {
+        console.log(data);
+        client.emit('messages', 'Hello from server');
+    });
+
+});
+
 // listen (start app with node server.js) ======================================
-app.listen(port);
+server.listen(port);
 console.log("App listening on port 8080");
