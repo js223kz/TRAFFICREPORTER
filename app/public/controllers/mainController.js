@@ -7,10 +7,12 @@ trafficApp.controller('MainController', function($scope, TrafficInfoService){
     }).addTo($scope.map);
 
     
-    TrafficInfoService.get()
-        .then((data) => {
-            //$scope.data = $.parseXML(data);
-            console.log(data);
+    TrafficInfoService.get().then((trafficInfo) => {
+        let messages = trafficInfo.data.sr.messages.message;
+        
+        messages.forEach((message) =>{
+           console.log(message.id); 
+        });
         }, (error) =>{       
     });   
 });

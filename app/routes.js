@@ -1,25 +1,33 @@
 "use strict";
-var request = require('request');
+let http = require('http'),
+    parser = require('xml2json');
+ 
+
 
 // expose the routes to our app with module.exports
 module.exports = function(app) {
+    
+  
 
     // routes ======================================================================
 
-    // Sverige radio api -----------------------------------------------------------
+    // Sveriges radio api -----------------------------------------------------------
     app.get('/api/trafficinfo', function(req, res) {
-            
-        request({
-            url: 'http://api.sr.se/api/v2/traffic/messages',
-            method: 'GET'
-        }, (error, response, body)=>{
-            if(error) {
-                console.log(error);
-            } else {
-                //console.log(response.statusCode, body);
-                console.log("Getting response");
-                res.send(body);
-            }
+        let url = 'http://api.sr.se/api/v2/traffic/messages';
+        http.get(url, (response) =>{
+            let result = '';
+
+            response.on('data', (chunk) =>{
+                result += chunk;
+            });
+
+            response.on('end', () =>{
+                result = parser.toJson(result);
+                console.log("Got a response: ", result);
+                res.send(result);
+            });
+        }).on('error', function(e){
+              console.log("Got an error: ", e);
         });
     });
 
