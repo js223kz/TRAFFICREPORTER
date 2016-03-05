@@ -1,3 +1,6 @@
+"use strict";
+var request = require('request');
+
 // expose the routes to our app with module.exports
 module.exports = function(app) {
 
@@ -5,8 +8,19 @@ module.exports = function(app) {
 
     // Sverige radio api -----------------------------------------------------------
     app.get('/api/trafficinfo', function(req, res) {
+            
 
-            res.send('Jag har kontakt med backend');
+        //Lets configure and request
+        request({
+            url: 'http://api.sr.se/api/v2/traffic/messages',
+            method: 'GET'
+        }, (error, response, body)=>{
+            if(error) {
+                console.log(error);
+            } else {
+                console.log(response.statusCode, body);
+            }
+        });
     });
 
     // application -------------------------------------------------------------
