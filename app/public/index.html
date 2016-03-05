@@ -7,6 +7,10 @@
     <meta name="description" content="Trafikinformation i Sverige">
     <meta name="author" content="Johanna Szepanski">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Set base url to supprt url:s without hashes -->
+    <base href="/">
+
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -21,7 +25,7 @@
 <body>
     <h1>testar /</h1>
     <!-- Partials --> 
-    <div ui-view class="viewcontainer"></div>
+    <ng-view class="viewcontainer"></ng-view>
 
     <!-- CDN --> 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
