@@ -9,8 +9,6 @@ module.exports = function(app) {
     // Sverige radio api -----------------------------------------------------------
     app.get('/api/trafficinfo', function(req, res) {
             
-
-        //Lets configure and request
         request({
             url: 'http://api.sr.se/api/v2/traffic/messages',
             method: 'GET'
@@ -18,7 +16,9 @@ module.exports = function(app) {
             if(error) {
                 console.log(error);
             } else {
-                console.log(response.statusCode, body);
+                //console.log(response.statusCode, body);
+                console.log("Getting response");
+                res.send(body);
             }
         });
     });

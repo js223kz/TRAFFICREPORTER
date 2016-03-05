@@ -8,8 +8,9 @@ trafficApp.controller('MainController', function($scope, TrafficInfoService){
 
     
     TrafficInfoService.get()
-            .then(function(data) {
-                $scope.data = data;
-            }, function(error){       
+        .then((data) => {
+            //$scope.data = $.parseXML(data);
+            console.log(data);
+        }, (error) =>{       
     });   
 });
