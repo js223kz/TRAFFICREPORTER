@@ -5,14 +5,20 @@ trafficApp.controller('MainController', function($scope, TrafficInfoService){
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo($scope.map);
-
     
-    TrafficInfoService.get().then((trafficInfo) => {
-        let messages = trafficInfo.data.sr.messages.message;
-        
-        messages.forEach((message) =>{
-           console.log(message.id); 
-        });
-        }, (error) =>{       
-    });   
+  
+     TrafficInfoService.getDataFromApi()
+       .then((data) =>{
+        TrafficInfoService.saveTrafficInfo(data)
+            .then(() =>{
+            TrafficInfoService.getChachedTrafficInfo()
+                .then((trafficInfo) =>{
+                    console.log(trafficInfo);    
+            });        
+        });     
+     }, (error) =>{
+         console.log(error);
+     });   
 });
+
+   
