@@ -32,3 +32,6 @@ io.on('connection', function(client) {
 // listen (start app with node server.js) ======================================
 server.listen(port);
 console.log("App listening on port 8080");
+/*setTimeout(function() {
+  io.sockets.emit('test123', {test: "success!"} );
+}, 5000 );*/

@@ -1,4 +1,15 @@
 <div id="containerview">
     <div id="buttons"></div>
     <div id="map"></div>
+    <div >
+        <ul>
+            <!-- prefix - before 'createddate gives descending order -->
+            <li data-ng-click='showMarker(item.id)' data-ng-repeat="item in trafficInfoList | orderBy: '-createddate'">
+                {{item.title}}
+                {{item.exactlocation}}
+                {{item.subcategory}}
+               
+            </li>
+        </ul>
+    </div>
 </div>
