@@ -4,7 +4,7 @@
     <div >
         <ul>
             <!-- prefix - before 'createddate gives descending order -->
-            <li data-ng-click='showMarker(item.id)' data-ng-repeat="item in trafficInfoList | orderBy: '-createddate'">
+            <li data-ng-click='showMarker(item)' data-ng-repeat="item in trafficInfoList | orderBy: '-createddate'">
                 {{item.title}}
                 {{item.exactlocation}}
                 {{item.subcategory}}

@@ -16,46 +16,46 @@ trafficApp.service('MapMarkerService', function($q){
            }
         }
         
-         deferred.resolve("hello");
+        deferred.resolve("hello");
         return deferred.promise;
     }
     
-    /*this.setIcon = (color) =>{
-        let shadowUrl = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/images/marker-shadow.png';
-        
-        let icon = new L.Icon.extend({
-          iconUrl: color,
-          shadowUrl: shadowUrl,
-          iconSize: [25, 41],
-          iconAnchor: [12, 41]
+    this.setIcon = (image) =>{
+        let shadowUrl = './images/shadow.png';
+        let marker = L.icon({
+            iconUrl: image,
+            shadowUrl: shadowUrl,
+            iconSize: [25, 41],
+            iconAnchor: [12, 41]
         });
-        deferred.resolve(icon);
-        return deferred.promise;     
-    };*/
-    
-   this.setColor = (priority) =>{
-        switch(priority) {
-            case '1':
-                deferred.resolve('https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png');
-                break;
-            case '2':
-                deferred.resolve('https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png');
-                break;
-            case '3':
-                deferred.resolve('https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png');
-                break;
-            case '4':
-                deferred.resolve('https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png');
-                break;
-            case '5':
-                deferred.resolve('https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png');
-                break;
-            default:
-                deferred.resolve('https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png');
-            } 
-        return deferred.promise;
+        return marker;
+         
     };
     
+   this.setImage = (priority) =>{
+       let image = undefined;
+         switch(priority) {
+                 
+            case '1':
+                image = 'images/red.png';
+                break;
+            case '2':
+                image = 'images/orange.png';
+                break;
+            case '3':
+                image = 'images/violet.png';
+                break;
+            case '4':
+                image = 'images/yellow.png';
+                break;
+            case '5':
+                image = 'images/green.png';
+                break;
+            default:
+                image = 'images/red.png';
+            }
+        return image;
+   }
  }); 
     
     
