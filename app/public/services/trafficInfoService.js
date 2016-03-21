@@ -13,12 +13,28 @@ trafficApp.service('TrafficInfoService', function($http, $q){
     }
     
     this.saveTrafficInfo = (trafficInfo) =>{
-        sessionStorage.setItem(trafficInfoStorage, trafficInfo);
+        let defaultDescription = 'Ingen beskrivning tillgänglig.'
+        let defaultExactLocation = '';
+        let trafficInfoArray = [];
+        trafficInfo.forEach((item) =>{
+            if(Object.keys(item.description).length == 0){
+                item.description = defaultDescription;
+            }
+            
+            if(Object.keys(item.exactlocation).length == 0){
+                item.exactlocation = defaultExactLocation;
+            }
+            
+            trafficInfoArray.push(item);
+        });
+        
+        sessionStorage.setItem(trafficInfoStorage, trafficInfoArray);
         deferred.resolve();
         return deferred.promise;
     }
     
-   this.findTrafficInfoById = (id) =>{
+   
+    /*this.findTrafficInfoById = (id) =>{
        this.getChachedTrafficInfo()
             .then((trafficInfo) =>{
          
@@ -35,11 +51,10 @@ trafficApp.service('TrafficInfoService', function($http, $q){
            deferred.resolve(null);
      });
       return deferred.promise;    
-    }
+    }*/
     
     this.getChachedTrafficInfo = () =>{
-        let trafficInfo = sessionStorage.getItem(trafficInfoStorage);
-        deferred.resolve(trafficInfo);
+        deferred.resolve(sessionStorage.getItem(trafficInfoStorage));
         return deferred.promise;
     }
 });

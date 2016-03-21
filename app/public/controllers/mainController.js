@@ -17,6 +17,7 @@ trafficApp.controller('MainController', function($scope, TrafficInfoService, Map
             TrafficInfoService.getChachedTrafficInfo()
             .then((trafficInfo) =>{
                 $scope.addMarkers(trafficInfo);
+                $scope.trafficInfoList = trafficInfo;
                 
             });        
         });     
@@ -24,29 +25,26 @@ trafficApp.controller('MainController', function($scope, TrafficInfoService, Map
          console.log(error);
      });
     
-    $scope.addMarkers = (markers) =>{
-        let shadowUrl = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/images/marker-shadow.png';
-        let myicon = L.Icon({
-                  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
-                  shadowUrl: shadowUrl,
-                  iconSize: [25, 41],
-                  iconAnchor: [12, 41]
-                });
-         markers.forEach((item) =>{
-           //MapMarkerService.setColor(item.priority)
-            //.then((color) =>{
-               
-                L.marker([item.latitude, item.longitude], {icon: myicon}).addTo($scope.map).bindPopup(item.description);
-
-           // });
-        });
+    $scope.addMarkers = (trafficInfo) =>{
+        let shadowUrl = './images/shadow.png';
+         trafficInfo.forEach((item) =>{
+            let image = MapMarkerService.setImage(item.priority),
+                icon = MapMarkerService.setIcon(image),
+                description = MapMarkerService.setDescription(item),
+                marker= L.marker([item.latitude, item.longitude], {icon: icon}).addTo($scope.map).bindPopup(description); 
+         });
     }
+    
+    
         
-    /*$scope.showMarker = (id) =>{
-       TrafficInfoService.findTrafficInfoById(id)
-            .then((object) =>{
-       });
-    } */ 
+    $scope.showMarker = (item) =>{
+        let latLng = [item.latitude, item.longitude],
+            description = MapMarkerService.setDescription(item),
+            popup = L.popup().setContent(description).setLatLng(latLng);
+        
+        popup.openOn($scope.map);
+    }
 });
 
+ 
    
