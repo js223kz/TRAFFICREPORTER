@@ -11,8 +11,8 @@ trafficApp.service('MapMarkerService', function($filter){
     
     this.showPopup = (clickedItem) =>{
         let latLng = [clickedItem.latitude, clickedItem.longitude],
-            description = this.setDescription(clickedItem),
-            popup = L.popup().setContent(description).setLatLng(latLng);
+            popupInfo = this.setPopupInfo(clickedItem),
+            popup = L.popup().setContent(popupInfo).setLatLng(latLng);
         return popup;       
     };
     
@@ -74,7 +74,7 @@ trafficApp.service('MapMarkerService', function($filter){
         return cat;
    };
     
-    this.setDescription = (item) =>{
+    this.setPopupInfo = (item) =>{
         let date = new Date(item.createddate),
             formattedDate = $filter('date')(date, 'yyyy-MM-dd hh:mm'),
             category = this.setCategory(item.category),
