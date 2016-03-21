@@ -14,11 +14,17 @@ trafficApp.service('TrafficInfoService', function($http, $q){
     
     this.saveTrafficInfo = (trafficInfo) =>{
         let defaultDescription = 'Ingen beskrivning tillgänglig.'
+        let defaultExactLocation = '';
         let trafficInfoArray = [];
         trafficInfo.forEach((item) =>{
             if(Object.keys(item.description).length == 0){
                 item.description = defaultDescription;
             }
+            
+            if(Object.keys(item.exactlocation).length == 0){
+                item.exactlocation = defaultExactLocation;
+            }
+            
             trafficInfoArray.push(item);
         });
         
@@ -48,8 +54,7 @@ trafficApp.service('TrafficInfoService', function($http, $q){
     }*/
     
     this.getChachedTrafficInfo = () =>{
-        let trafficInfo = sessionStorage.getItem(trafficInfoStorage);
-        deferred.resolve(trafficInfo);
+        deferred.resolve(sessionStorage.getItem(trafficInfoStorage));
         return deferred.promise;
     }
 });

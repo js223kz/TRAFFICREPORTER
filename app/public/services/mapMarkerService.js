@@ -6,20 +6,6 @@ trafficApp.service('MapMarkerService', function($q){
         sessionStorage.setItem('mapmarkers', mapmarkers);
     };
     
-    this.addMarkers = (trafficInfo) =>{
-        let markers = [];
-        
-        for (var key in trafficInfo) {
-           if (trafficInfo.hasOwnProperty(key)) {
-              let obj = trafficInfo[key];
-                
-           }
-        }
-        
-        deferred.resolve("hello");
-        return deferred.promise;
-    }
-    
     this.setIcon = (image) =>{
         let shadowUrl = './images/shadow.png';
         let marker = L.icon({
@@ -56,37 +42,12 @@ trafficApp.service('MapMarkerService', function($q){
                 image = 'images/red.png';
             }
         return image;
-   }
+   };
+    
+    this.setDescription = (item) =>{
+        return '<p class="popup_title">' + item.title + ' ' + item.exactlocation + '</p><p class="popup_description">'+item.description+'</p>';
+    }
  }); 
     
-    
-    
-    /*trafficInfo.forEach((item) =>{
-            this.setColor(item.priority)
-            .then((color) =>{
-                this.setIcon(color)
-                .then((icon) =>{
-                    let marker = L.marker([item.latitude, item.longitude], {icon:icon});
-                    marker.bindPopup(item.description);
-                    markers.push(marker);
-                   
-                });
-            });
-             deferred.resolve(markers);
-        });
-    
-    
-    this.setIcon = (color) =>{
-        let shadowUrl = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/images/marker-shadow.png';
-        
-        let icon = new L.Icon({
-          iconUrl: color,
-          shadowUrl: shadowUrl,
-          iconSize: [25, 41],
-          iconAnchor: [12, 41]
-        });
-        deferred.resolve(icon);
-        return deferred.promise;
-    }*/
 
 

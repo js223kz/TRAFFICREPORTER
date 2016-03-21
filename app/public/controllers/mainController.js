@@ -28,41 +28,22 @@ trafficApp.controller('MainController', function($scope, TrafficInfoService, Map
     $scope.addMarkers = (trafficInfo) =>{
         let shadowUrl = './images/shadow.png';
          trafficInfo.forEach((item) =>{
-            let image = MapMarkerService.setImage(item.priority)
-            let icon = MapMarkerService.setIcon(image);
-            let marker= L.marker([item.latitude, item.longitude], {icon: icon, id: item.id}).addTo($scope.map).bindPopup('<p id=item.id>'+item.description+'</p>'); 
-            $scope.markers.push({marker: marker, id:item.id});
-             
-             
-                marker.on('click', function(e){
-                 console.log(e);     
-                });
+            let image = MapMarkerService.setImage(item.priority),
+                icon = MapMarkerService.setIcon(image),
+                description = MapMarkerService.setDescription(item),
+                marker= L.marker([item.latitude, item.longitude], {icon: icon}).addTo($scope.map).bindPopup(description); 
          });
     }
     
     
         
     $scope.showMarker = (item) =>{
-        console.log(item.description);
-        let marker = $scope.findMarker(item.id);
-        let  latLng = [item.latitude, item.longitude];
-        let popup = L.popup().setContent(item.description).setLatLng(latLng);
-        popup.openOn($scope.map);
-       
-    }
-
-  
-    $scope.findMarker = (id) =>{
-        let selected = undefined;
-        $scope.markers.forEach((marker) =>{
-            if(marker.id === id){
-               selected = marker;
-            }
-        });
-        return selected;
+        let latLng = [item.latitude, item.longitude],
+            description = MapMarkerService.setDescription(item),
+            popup = L.popup().setContent(description).setLatLng(latLng);
         
+        popup.openOn($scope.map);
     }
-   
 });
 
  
