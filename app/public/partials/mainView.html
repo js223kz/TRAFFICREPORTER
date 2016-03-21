@@ -2,14 +2,24 @@
     <div id="buttons"></div>
     <div id="map">
     </div>
-    <div >
+    <div>
         <ul>
             <!-- prefix - before 'createddate gives descending order -->
-            <li data-ng-click='showMarker(item)' data-ng-repeat="item in trafficInfoList | orderBy: '-createddate'">
+            <li data-ng-click='showPopup(item)' data-ng-repeat="item in trafficInfoList | orderBy: '-createddate'">
                 {{item.title}}
                 {{item.exactlocation}}
                 {{item.subcategory}}
             </li>
         </ul>
+    </div>
+    <div ng-show = "message">
+        <p>Finns inga trafikmeddelanden under vald kategori</p>
+    </div>
+    <div>
+        <button data-ng-click='showAllMarkers()'>Alla</button>
+        <button data-ng-click='showRoadTraffic()'>Vägtrafik</button>
+        <button data-ng-click='showPublicTraffic()'>Kollektivtrafik</button>
+        <button data-ng-click="showPlannedTraffic()">Planerad störning</button>
+        <button data-ng-click="showOtherTraffic()">Övrigt</button>
     </div>
 </div>
