@@ -1,5 +1,5 @@
 "use strict";
-trafficApp.service('MapMarkerService', function(){
+trafficApp.service('MapMarkerService', function($filter){
   
     this.createMarker = (item) =>{
         let image = this.setImage(item.priority),
@@ -51,9 +51,43 @@ trafficApp.service('MapMarkerService', function(){
             }
         return image;
    };
+        
+    this.setCategory = (category) =>{
+       let cat = undefined;
+         switch(category) {
+                 
+            case '0':
+                cat = 'Vägtrafik';
+                break;
+            case '1':
+                cat = 'Kollektivtrafik';
+                break;
+            case '2':
+                cat = 'Planerad störning';
+                break;
+            case '3':
+                cat = 'Övrigt';
+                break;
+            default:
+                cat = 'Övrigt';
+            }
+        return cat;
+   };
     
     this.setDescription = (item) =>{
-        return '<p class="popup_title">' + item.title + ' ' + item.exactlocation + '</p><p class="popup_description">'+item.description+'</p>';
+        let date = new Date(item.createddate),
+            formattedDate = $filter('date')(date, 'yyyy-MM-dd hh:mm'),
+            category = this.setCategory(item.category),
+            description =  item.description,
+            title = item.title,
+            exactlocation = item.exactlocation;
+            
+        
+        return '<p class="popup_title">' + title + ' ' + 
+            exactlocation + '</p><p class="popup_description">' +
+            '<p class= "date">Skapad: ' + formattedDate + '</p>' +
+            '<p class= "category">Kategori: ' + category + 
+            '</p>' + description +'</p>';
     }
  }); 
     
