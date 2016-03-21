@@ -26,7 +26,8 @@ trafficApp.service('MapMarkerService', function($q){
             iconUrl: image,
             shadowUrl: shadowUrl,
             iconSize: [25, 41],
-            iconAnchor: [12, 41]
+            iconAnchor: [12, 41],
+            id:'25'
         });
         return marker;
          

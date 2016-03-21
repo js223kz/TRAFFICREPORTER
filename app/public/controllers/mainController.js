@@ -30,8 +30,9 @@ trafficApp.controller('MainController', function($scope, TrafficInfoService, Map
          trafficInfo.forEach((item) =>{
             let image = MapMarkerService.setImage(item.priority)
             let icon = MapMarkerService.setIcon(image);
-            let marker= L.marker([item.latitude, item.longitude], {icon: icon}).addTo($scope.map).bindPopup(item.description); 
-            $scope.markers.push({marker: marker, id: item.id});
+            let marker= L.marker([item.latitude, item.longitude], {icon: icon, id: item.id}).addTo($scope.map).bindPopup('<p id=item.id>'+item.description+'</p>'); 
+            $scope.markers.push({marker: marker, id:item.id});
+             
              
                 marker.on('click', function(e){
                  console.log(e);     
@@ -42,15 +43,25 @@ trafficApp.controller('MainController', function($scope, TrafficInfoService, Map
     
         
     $scope.showMarker = (item) =>{
-        let info = $scope.findMarker(item.id);
-        let marker = info.marker;
-        info.marker.popupOpen();
+        console.log(item.description);
+        let marker = $scope.findMarker(item.id);
+        let  latLng = [item.latitude, item.longitude];
+        let popup = L.popup().setContent(item.description).setLatLng(latLng);
+        popup.openOn($scope.map);
+       
     }
-    
+
+  
     $scope.findMarker = (id) =>{
-        return $scope.markers.find(x => id)
+        let selected = undefined;
+        $scope.markers.forEach((marker) =>{
+            if(marker.id === id){
+               selected = marker;
+            }
+        });
+        return selected;
+        
     }
-    
    
 });
 
