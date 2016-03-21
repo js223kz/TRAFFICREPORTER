@@ -1,9 +1,19 @@
 "use strict";
-trafficApp.service('MapMarkerService', function($q){
-    let deferred = $q.defer();
+trafficApp.service('MapMarkerService', function(){
+  
+    this.createMarker = (item) =>{
+        let image = this.setImage(item.priority),
+            icon = this.setIcon(image),
+            description = this.setDescription(item),
+            marker= L.marker([item.latitude, item.longitude], {icon: icon}).bindPopup(description);
+        return marker;
+    };
     
-    this.saveMarkers = (mapmarkers) =>{
-        sessionStorage.setItem('mapmarkers', mapmarkers);
+    this.showPopup = (clickedItem) =>{
+        let latLng = [clickedItem.latitude, clickedItem.longitude],
+            description = this.setDescription(clickedItem),
+            popup = L.popup().setContent(description).setLatLng(latLng);
+        return popup;       
     };
     
     this.setIcon = (image) =>{
@@ -12,12 +22,10 @@ trafficApp.service('MapMarkerService', function($q){
             iconUrl: image,
             shadowUrl: shadowUrl,
             iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            id:'25'
+            iconAnchor: [12, 41]
         });
         return marker;
-         
-    };
+   };
     
    this.setImage = (priority) =>{
        let image = undefined;

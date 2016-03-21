@@ -1,50 +1,74 @@
 'use strict';
-trafficApp.controller('MainController', function($scope, TrafficInfoService, MapMarkerService){
+trafficApp.controller('MainController', function($scope, TrafficInfoService, MapMarkerService, MapLayerService){
     
     $scope.trafficInfoList = [];
-    $scope.markers = [];
+    $scope.selectedLayer = undefined;
     $scope.map = L.map('map').setView([62, 17], 5);
+    
    
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo($scope.map);
     
-  
-     TrafficInfoService.getDataFromApi()
+  TrafficInfoService.getDataFromApi()
        .then((data) =>{
         TrafficInfoService.saveTrafficInfo(data)
         .then(() =>{
             TrafficInfoService.getChachedTrafficInfo()
             .then((trafficInfo) =>{
-                $scope.addMarkers(trafficInfo);
                 $scope.trafficInfoList = trafficInfo;
-                
+                $scope.selectedLayer = MapLayerService.allMarkersLayer(trafficInfo);
+                $scope.map.addLayer($scope.selectedLayer);
+
             });        
         });     
      }, (error) =>{
          console.log(error);
      });
     
-    $scope.addMarkers = (trafficInfo) =>{
-        let shadowUrl = './images/shadow.png';
-         trafficInfo.forEach((item) =>{
-            let image = MapMarkerService.setImage(item.priority),
-                icon = MapMarkerService.setIcon(image),
-                description = MapMarkerService.setDescription(item),
-                marker= L.marker([item.latitude, item.longitude], {icon: icon}).addTo($scope.map).bindPopup(description); 
-         });
+    $scope.showPopup = (clickedItem) =>{
+        let popup = MapMarkerService.showPopup(clickedItem);
+        popup.openOn($scope.map);
+    };
+    
+    
+    $scope.showAllMarkers = () =>{
+        $scope.map.removeLayer($scope.selectedLayer);
+        $scope.selectedLayer = MapLayerService.allMarkersLayer($scope.trafficInfoList);
+        $scope.map.addLayer($scope.selectedLayer);
+    }
+    
+    $scope.showRoadTraffic = () =>{
+        $scope.map.removeLayer($scope.selectedLayer);
+        $scope.selectedLayer = MapLayerService.roadTrafficLayer($scope.trafficInfoList);
+        $scope.map.addLayer($scope.selectedLayer);
+    }
+    
+    $scope.showPublicTraffic = () =>{
+        $scope.map.removeLayer($scope.selectedLayer);
+        $scope.selectedLayer = MapLayerService.publicTrafficLayer($scope.trafficInfoList);
+        $scope.map.addLayer($scope.selectedLayer);
+    }
+    
+     $scope.showPublicTraffic = () =>{
+        $scope.map.removeLayer($scope.selectedLayer);
+        $scope.selectedLayer = MapLayerService.publicTrafficLayer($scope.trafficInfoList);
+        $scope.map.addLayer($scope.selectedLayer);
+    }
+    
+    $scope.showPlannedTraffic = () =>{
+        $scope.map.removeLayer($scope.selectedLayer);
+        $scope.selectedLayer = MapLayerService.plannedTrafficLayer($scope.trafficInfoList);
+        $scope.map.addLayer($scope.selectedLayer);
     }
     
     
-        
-    $scope.showMarker = (item) =>{
-        let latLng = [item.latitude, item.longitude],
-            description = MapMarkerService.setDescription(item),
-            popup = L.popup().setContent(description).setLatLng(latLng);
-        
-        popup.openOn($scope.map);
+    
+    $scope.showOtherTraffic = () =>{
+        $scope.map.removeLayer($scope.selectedLayer);
+        $scope.selectedLayer = MapLayerService.otherTrafficLayer($scope.trafficInfoList);
+        $scope.map.addLayer($scope.selectedLayer);
     }
 });
 
  
-   

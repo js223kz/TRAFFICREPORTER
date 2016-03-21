@@ -33,26 +33,6 @@ trafficApp.service('TrafficInfoService', function($http, $q){
         return deferred.promise;
     }
     
-   
-    /*this.findTrafficInfoById = (id) =>{
-       this.getChachedTrafficInfo()
-            .then((trafficInfo) =>{
-         
-           for (var key in trafficInfo) {
-               if (trafficInfo.hasOwnProperty(key)) {
-                  let obj = trafficInfo[key];
-                  
-                   if(obj.id === id){
-                      console.log(obj);
-                      deferred.resolve(obj);
-                  }
-               }
-            }
-           deferred.resolve(null);
-     });
-      return deferred.promise;    
-    }*/
-    
     this.getChachedTrafficInfo = () =>{
         deferred.resolve(sessionStorage.getItem(trafficInfoStorage));
         return deferred.promise;
