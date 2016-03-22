@@ -1,30 +1,31 @@
 <div id="container_view" class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-    <div class ="button_container">
-        <button class ="all_button" data-ng-click='showAllMarkers()'>Alla</button>
-        <div class="top_buttons">
-            <button class ="cat_button" data-ng-click='showRoadTraffic()'>Vägtrafik</button>
-            <button class ="cat_button" data-ng-click='showPublicTraffic()'>Kollektivtrafik</button>
-        </div>
-        <div class="bottom_buttons">
-            <button class ="cat_button" data-ng-click="showPlannedTraffic()">Planerad störning</button>
-            <button class ="cat_button" data-ng-click="showOtherTraffic()">Övrigt</button>
-        </div>
+    <div class="button_container">
+        <button id="all_button" class="cat_button" data-ng-click='showAllMarkers()'>Alla</button>
+        <button id="road_button" class ="cat_button" data-ng-click='showRoadTraffic()'>Vägtrafik</button>
+        <button id="planned_button" class ="cat_button" data-ng-click="showPlannedTraffic()">Planerad störning</button>
+        <button id="public_button" class ="cat_button" data-ng-click='showPublicTraffic()'>Kollektivtrafik</button>
+        <button id="other_button" class ="cat_button" data-ng-click="showOtherTraffic()">Övrigt</button>
     </div>
-    <div id="map">
+    <div id="explanation_container">
+        <li><img class="marker_image" src="images/red.png"><p>Mycket allvarlig händelse</p></li>
+        <li><img class="marker_image" src="images/orange.png"><p>Stor händelse</p></li>
+        <li><img class="marker_image" src="images/violet.png"><p>Störning</p></li>
+        <li><img class="marker_image" src="images/yellow.png"><p>Information</p></li>
+        <li><img class="marker_image" src="images/green.png"><p>Mindre störning</p></li>
     </div>
-    <div>
-        <ul>
+    <div id="map_container">
+    <div id="map"></div>
+        <div id="traffic_info_container">
+        <ul id="traffic_info_list">
             <!-- prefix - before 'createddate gives descending order -->
-            <li data-ng-click='showPopup(item)' data-ng-repeat="item in trafficInfoList | orderBy: '-createddate'">
-                {{item.title}}
-                {{item.exactlocation}}
-                {{item.subcategory}}
+            <li class="traffic_info_row" data-ng-click='showPopup(item)' data-ng-repeat="item in trafficInfoList | orderBy: '-createddate'">
+                <p>{{item.title}}  {{item.exactlocation}}</p>
+                <p>{{item.subcategory}}</p>
             </li>
         </ul>
+        </div>
     </div>
-    
     <div ng-show = "message">
         <p>Finns inga trafikmeddelanden under vald kategori</p>
-    </div>
-    
+    </div>   
 </div>
