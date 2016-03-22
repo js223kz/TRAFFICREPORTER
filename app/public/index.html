@@ -37,24 +37,10 @@
     
     
     <!-- Application resources -->
-    <script src="/socket.io/socket.io.js"></script>
     <script src="/app.js"></script>
     <script src="services/trafficInfoService.js"></script>
     <script src="controllers/mainController.js"></script>
     <script src="services/mapMarkerService.js"></script>
     <script src="services/mapLayerService.js"></script>
-   
-    
-    <script>  
-        var socket = io.connect('http://localhost:8080');
-        socket.on('connect', function(data) {
-            socket.emit('join', 'Hello World from client');
-        });
-        socket.on('messages', function(data) {
-                console.log(data);
-        });
-    </script>
-    
-
 </body>
 </html>

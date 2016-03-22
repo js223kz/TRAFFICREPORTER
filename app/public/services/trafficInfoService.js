@@ -10,12 +10,13 @@ trafficApp.service('TrafficInfoService', function($http, $q){
                 deferred.reject('Kan tyvärr inte hämta trafikinformation för tillfället.' + error.status);
             });
         return deferred.promise;
-    }
+    };
     
     this.saveTrafficInfo = (trafficInfo) =>{
-        let defaultDescription = 'Ingen beskrivning tillgänglig.'
+        let defaultDescription = 'Ingen beskrivning tillgänglig.';
         let defaultExactLocation = '';
         let trafficInfoArray = [];
+        
         trafficInfo.forEach((item) =>{
             if(Object.keys(item.description).length == 0){
                 item.description = defaultDescription;
@@ -23,18 +24,33 @@ trafficApp.service('TrafficInfoService', function($http, $q){
             
             if(Object.keys(item.exactlocation).length == 0){
                 item.exactlocation = defaultExactLocation;
-            }
-            
+            } 
             trafficInfoArray.push(item);
-        });
+        });  
         
         sessionStorage.setItem(trafficInfoStorage, trafficInfoArray);
         deferred.resolve();
         return deferred.promise;
-    }
+    };
     
     this.getChachedTrafficInfo = () =>{
         deferred.resolve(sessionStorage.getItem(trafficInfoStorage));
+        return deferred.promise;
+    };
+    
+    this.updateTrafficInfo = () =>{
+        this.getDataFromApi()
+        .then((data) =>{
+            this.saveTrafficInfo(data)
+            .then(() =>{
+                this.getChachedTrafficInfo()
+                .then((trafficInfo) =>{
+                   deferred.resolve(trafficInfo);
+                });        
+            });     
+         }, (error) =>{
+             deferred.reject(error);
+     });
         return deferred.promise;
     }
 });

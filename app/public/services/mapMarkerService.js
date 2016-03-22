@@ -4,8 +4,8 @@ trafficApp.service('MapMarkerService', function($filter){
     this.createMarker = (item) =>{
         let image = this.setImage(item.priority),
             icon = this.setIcon(image),
-            description = this.setDescription(item),
-            marker= L.marker([item.latitude, item.longitude], {icon: icon}).bindPopup(description);
+            popupInfo = this.setPopupInfo(item),
+            marker= L.marker([item.latitude, item.longitude], {icon: icon}).bindPopup(popupInfo);
         return marker;
     };
     

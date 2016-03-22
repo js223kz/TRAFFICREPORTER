@@ -3,12 +3,9 @@ let http = require('http'),
     parser = require('xml2json');
  
 
-
 // expose the routes to our app with module.exports
 module.exports = function(app) {
     
-  
-
     // routes ======================================================================
 
     // Sveriges radio api -----------------------------------------------------------
