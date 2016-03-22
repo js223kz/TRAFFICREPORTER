@@ -1,5 +1,15 @@
-<div id="containerview">
-    <div id="buttons"></div>
+<div id="container_view" class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+    <div class ="button_container">
+        <button class ="all_button" data-ng-click='showAllMarkers()'>Alla</button>
+        <div class="top_buttons">
+            <button class ="cat_button" data-ng-click='showRoadTraffic()'>Vägtrafik</button>
+            <button class ="cat_button" data-ng-click='showPublicTraffic()'>Kollektivtrafik</button>
+        </div>
+        <div class="bottom_buttons">
+            <button class ="cat_button" data-ng-click="showPlannedTraffic()">Planerad störning</button>
+            <button class ="cat_button" data-ng-click="showOtherTraffic()">Övrigt</button>
+        </div>
+    </div>
     <div id="map">
     </div>
     <div>
@@ -12,14 +22,9 @@
             </li>
         </ul>
     </div>
+    
     <div ng-show = "message">
         <p>Finns inga trafikmeddelanden under vald kategori</p>
     </div>
-    <div>
-        <button data-ng-click='showAllMarkers()'>Alla</button>
-        <button data-ng-click='showRoadTraffic()'>Vägtrafik</button>
-        <button data-ng-click='showPublicTraffic()'>Kollektivtrafik</button>
-        <button data-ng-click="showPlannedTraffic()">Planerad störning</button>
-        <button data-ng-click="showOtherTraffic()">Övrigt</button>
-    </div>
+    
 </div>
