@@ -63,12 +63,13 @@ li{
 
 #traffic_info_container{
     background-color: lightgray;
+    opacity: 0.9;
     position: absolute;
     z-index: 10px;
     max-height: 100px;
     width: 100%;
     top: 650px;
-    overflow: hidden;
+    overflow: visible;
     overflow-x: scroll;
 }
 #traffic_info_list{
@@ -89,3 +90,16 @@ li{
     padding-right: 5px;
    
 }
+.row_title{
+    font-weight: 600;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip{
+     background: lightgray;
+}
+
+.popup_title{
+    font-weight: 600;
+}
+
