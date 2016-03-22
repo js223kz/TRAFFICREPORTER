@@ -3,7 +3,7 @@ trafficApp.controller('MainController', function($scope, TrafficInfoService, Map
     
     $scope.trafficInfoList = [];
     $scope.selectedLayer = undefined;
-    $scope.map = L.map('map').setView([60, 17],5);
+    $scope.map = L.map('map').setView([60, 17], 5);
     $scope.message = false;
   
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
