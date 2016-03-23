@@ -5,20 +5,38 @@ trafficApp.controller('MainController', function($scope, TrafficInfoService, Map
     $scope.selectedLayer = undefined;
     $scope.map = L.map('map').setView([60, 17], 5);
     $scope.message = false;
+    
   
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo($scope.map);
 
  
-    //Update trafficinfo and add info to list
-    //and markers at each traffic message position
-    TrafficInfoService.updateTrafficInfo()
-    .then((trafficInfo) =>{
-        $scope.trafficInfoList = trafficInfo;
-        $scope.selectedLayer = MapLayerService.showAllMarkers(trafficInfo);
-        $scope.map.addLayer($scope.selectedLayer);
-    });
+    
+        //Update trafficinfo and add info to list
+        //and markers at each traffic message position
+    if(TrafficInfoService.checkTimeToUpdate()){
+        TrafficInfoService.updateTrafficInfo()
+        .then((trafficInfo) =>{
+            console.log(trafficInfo);
+            $scope.trafficInfoList = trafficInfo;
+            $scope.selectedLayer = MapLayerService.showAllMarkers(trafficInfo);
+            $scope.map.addLayer($scope.selectedLayer);
+        });
+    }else{
+        TrafficInfoService.getChachedTrafficInfo()
+        .then((cachedInfo) =>{
+            console.log(cachedInfo);
+            $scope.trafficInfoList = cachedInfo;
+            $scope.selectedLayer = MapLayerService.showAllMarkers(cachedInfo);
+            $scope.map.addLayer($scope.selectedLayer);
+            
+        })
+        
+    }
+
+        
+
 
     //shows corresponding marker-popup
     //when user clicks row in list

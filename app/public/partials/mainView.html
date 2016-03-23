@@ -18,7 +18,7 @@
         <div id="traffic_info_container">
         <ul id="traffic_info_list">
             <!-- prefix - before 'createddate gives descending order -->
-            <li class="traffic_info_row" data-ng-click='showPopup(item)' data-ng-repeat="item in trafficInfoList | orderBy: '-createddate'">
+            <li class="traffic_info_row" data-ng-click='showPopup(item)' data-ng-repeat="item in trafficInfoList | orderBy:['-createddate', 'title'] ">
                 <p class="row_title">{{item.title}}  {{item.exactlocation}}</p>
                 <p class="row_category">{{item.subcategory}}</p>
             </li>
