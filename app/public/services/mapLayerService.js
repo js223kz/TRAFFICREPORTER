@@ -5,15 +5,15 @@ trafficApp.service('MapLayerService', function(MapMarkerService, TrafficInfoServ
     
     this.showAllMarkers = (trafficInfo) =>{
         let markers = [];
-       trafficInfo.forEach((item) =>{
-            marker = MapMarkerService.createMarker(item);
-            markers.push(marker);
-       }); 
+        trafficInfo.forEach((item) =>{
+           marker = MapMarkerService.createMarker(item);
+               markers.push(marker);
+        });
+        
         if(!markers){
             return null
         }
         return L.layerGroup(markers);
-        
     };
     
 
