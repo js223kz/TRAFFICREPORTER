@@ -1,20 +1,20 @@
 'use strict';
 trafficApp.controller('MainController', function($scope, TrafficInfoService, MapMarkerService, MapLayerService){
     
+    $scope.$watch('online', function(newStatus) {});
     $scope.trafficInfoList = [];
     $scope.selectedLayer = undefined;
     $scope.map = L.map('map').setView([60, 17], 5);
     $scope.message = false;
     
-  
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo($scope.map);
 
  
     
-        //Update trafficinfo and add info to list
-        //and markers at each traffic message position
+    //Update trafficinfo and add info to list
+    //and markers at each traffic message position
     if(TrafficInfoService.checkTimeToUpdate()){
         TrafficInfoService.updateTrafficInfo()
         .then((trafficInfo) =>{
