@@ -13,8 +13,12 @@
         <li><img class="marker_image" src="images/yellow.png"><p>Information</p></li>
         <li><img class="marker_image" src="images/green.png"><p>Mindre störning</p></li>
     </div>
+    <div id="message_container" ng-show="message">
+        <p id="message_text">Finns inga trafikmeddelanden under vald kategori</p>
+    </div> 
     <div id="map_container">
     <div id="map"></div>
+        
         <div id="traffic_info_container">
         <ul id="traffic_info_list">
             <!-- prefix - before 'createddate gives descending order -->
@@ -25,7 +29,5 @@
         </ul>
         </div>
     </div>
-    <div ng-show = "message">
-        <p>Finns inga trafikmeddelanden under vald kategori</p>
-    </div>   
+      
 </div>

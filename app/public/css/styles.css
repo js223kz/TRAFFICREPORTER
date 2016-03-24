@@ -102,4 +102,18 @@ li{
 .popup_title{
     font-weight: 600;
 }
+#message_container{
+    height: 40px;
+    background-color: crimson;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    
+
+}
+#message_text{
+    margin-left: 10px;
+    margin-top: 10px;
+    vertical-align: middle;
+    display: inline-block;
+}
 
