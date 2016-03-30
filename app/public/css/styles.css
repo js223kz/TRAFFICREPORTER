@@ -126,3 +126,7 @@ li{
     font-style: italic;
 }
 
+#cached_row_title{
+    font-weight: 600;
+}
+

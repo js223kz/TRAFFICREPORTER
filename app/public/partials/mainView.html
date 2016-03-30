@@ -1,39 +1,51 @@
 <div id="container_view" class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-    
-    <div class="button_container" ng-show="online">
-        <button id="all_button" class="cat_button" data-ng-click='showAllMarkers()'>Alla</button>
-        <button id="road_button" class ="cat_button" data-ng-click='showRoadTraffic()'>Vägtrafik</button>
-        <button id="planned_button" class ="cat_button" data-ng-click="showPlannedTraffic()">Planerad störning</button>
-        <button id="public_button" class ="cat_button" data-ng-click='showPublicTraffic()'>Kollektivtrafik</button>
-        <button id="other_button" class ="cat_button" data-ng-click="showOtherTraffic()">Övrigt</button>
+    <!-- Application online --> 
+    <div id ="online_container" ng-show="online">
+        <p>{{time}}</p>
+        <div class="button_container">
+            <button id="all_button" class="cat_button" data-ng-click='showAllMarkers()'>Alla</button>
+            <button id="road_button" class ="cat_button" data-ng-click='showRoadTraffic()'>Vägtrafik</button>
+            <button id="planned_button" class ="cat_button" data-ng-click="showPlannedTraffic()">Planerad störning</button>
+            <button id="public_button" class ="cat_button" data-ng-click='showPublicTraffic()'>Kollektivtrafik</button>
+            <button id="other_button" class ="cat_button" data-ng-click="showOtherTraffic()">Övrigt</button>
+        </div>
+        <div id="explanation_container">
+            <li><img class="marker_image" src="images/red.png"><p>Mycket allvarlig händelse</p></li>
+            <li><img class="marker_image" src="images/orange.png"><p>Stor händelse</p></li>
+            <li><img class="marker_image" src="images/violet.png"><p>Störning</p></li>
+            <li><img class="marker_image" src="images/yellow.png"><p>Information</p></li>
+            <li><img class="marker_image" src="images/green.png"><p>Mindre störning</p></li>
+        </div>
+        <div id="message_container" ng-show="message">
+            <p id="message_text">Finns inga trafikmeddelanden under vald kategori</p>
+        </div> 
+        <div id="map_container">
+            <div id="map"></div>
+                <div id="traffic_info_container">
+                    <ul id="traffic_info_list">
+                        <!-- prefix - before 'createddate gives descending order -->
+                        <li class="traffic_info_row" data-ng-click='showPopup(item)' data-ng-repeat="item in trafficInfoList | orderBy:['-createddate', 'title'] ">
+                            <p class="row_title">{{item.title}}  {{item.exactlocation}}</p>
+                            <p class="row_category">{{item.subcategory}}</p>
+                        </li>
+                    </ul>
+                    <p id="sr_text">Trafikinformation hämtat från Sveriges Radios trafiktjänst</p> 
+            </div>
+        </div>
     </div>
-    <div id="explanation_container" ng-show="online">
-        <li><img class="marker_image" src="images/red.png"><p>Mycket allvarlig händelse</p></li>
-        <li><img class="marker_image" src="images/orange.png"><p>Stor händelse</p></li>
-        <li><img class="marker_image" src="images/violet.png"><p>Störning</p></li>
-        <li><img class="marker_image" src="images/yellow.png"><p>Information</p></li>
-        <li><img class="marker_image" src="images/green.png"><p>Mindre störning</p></li>
-    </div>
-    <div id="message_container" ng-show="message" ng-show="online">
-        <p id="message_text">Finns inga trafikmeddelanden under vald kategori</p>
-    </div> 
-    <div id="map_container">
     
-        <!-- Application offline --> 
-        <div ng-hide="online" >
+     <!-- Application offline --> 
+    <div id="offline_container" ng-hide="online">
+        <div>
             <img src="images/offline.jpeg">
         </div>
-        <div id="map" ng-show="online"></div>
-        <div id="traffic_info_container">
-            <ul id="traffic_info_list">
-                <!-- prefix - before 'createddate gives descending order -->
-                <li class="traffic_info_row" data-ng-click='showPopup(item)' data-ng-repeat="item in trafficInfoList | orderBy:['-createddate', 'title'] ">
-                    <p class="row_title">{{item.title}}  {{item.exactlocation}}</p>
-                    <p class="row_category">{{item.subcategory}}</p>
-                </li>
-            </ul>
-            <p id="sr_text">Trafikinformation hämtat från Sveriges Radios trafiktjänst</p> 
-        </div>
+        <ul>
+            <li data-ng-repeat="item in cachedList | orderBy:['-createddate', 'title'] ">
+                <p id="cached_row_title">{{item.title}}  {{item.exactlocation}}</p>
+                <p>{{item.subcategory}}</p>
+            </li>
+        
+        </ul>
     </div>
     
 </div>

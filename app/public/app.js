@@ -6,7 +6,7 @@ trafficApp.config(['$routeProvider', '$locationProvider',
     $routeProvider.
       when('/', {
         templateUrl: 'partials/mainView.html',
-        controller: 'MainController'
+        controller: 'mainController'
       }).
       otherwise({
         redirectTo: '/'

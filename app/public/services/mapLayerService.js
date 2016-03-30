@@ -1,32 +1,39 @@
 "use strict";
-trafficApp.service('MapLayerService', function(MapMarkerService, TrafficInfoService){
+
+angular.module('trafficApp')
+     .factory('mapLayerService', ['mapMarkerService', 'trafficDataService', mapLayerService]);  
+
+function mapLayerService(mapMarkerService, trafficDataService){
     let marker = undefined;
-    
-    
-    this.showAllMarkers = (trafficInfo) =>{
+
+    return {
+        showAllMarkers: showAllMarkers,
+        showSelectedMarkers: showSelectedMarkers
+    }
+
+    function showAllMarkers(trafficInfo){
         let markers = [];
         trafficInfo.forEach((item) =>{
-           marker = MapMarkerService.createMarker(item);
+           marker = mapMarkerService.createMarker(item);
                markers.push(marker);
         });
-        
+
         if(!markers){
             return null
         }
         return L.layerGroup(markers);
-    };
-    
+    }
 
-    this.showSelectedMarkers = (trafficInfo, filter) =>{
+
+    function showSelectedMarkers(trafficInfo, filter){
         let markers = [];
         trafficInfo.forEach((item) =>{
            if(item.category === filter){
-                marker = MapMarkerService.createMarker(item);
+                marker = mapMarkerService.createMarker(item);
                 markers.push(marker);
             }  
        }); 
-        
+
         return L.layerGroup(markers); 
     }
-
- }); 
+}
