@@ -1,90 +1,88 @@
 'use strict';
-trafficApp.controller('MainController', function($scope, TrafficInfoService, MapMarkerService, MapLayerService){
-    
-    $scope.trafficInfoList = [];
-    $scope.selectedLayer = undefined;
-    $scope.map = L.map('map').setView([60, 17], 5);
-    $scope.message = false;
-    
-  
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo($scope.map);
 
- 
+(function(){
     
-        //Update trafficinfo and add info to list
-        //and markers at each traffic message position
-    if(TrafficInfoService.checkTimeToUpdate()){
-        TrafficInfoService.updateTrafficInfo()
-        .then((trafficInfo) =>{
-            console.log(trafficInfo);
-            $scope.trafficInfoList = trafficInfo;
-            $scope.selectedLayer = MapLayerService.showAllMarkers(trafficInfo);
-            $scope.map.addLayer($scope.selectedLayer);
-        });
-    }else{
-        TrafficInfoService.getChachedTrafficInfo()
-        .then((cachedInfo) =>{
-            console.log(cachedInfo);
+angular.module('trafficApp')
+     .controller('mainController', ['$scope', 'constants', 'trafficDataService', 'mapMarkerService', 'mapLayerService', mainController]);  
+
+    function mainController($scope, constants, trafficDataService, mapMarkerService, mapLayerService){
+        $scope.trafficInfoList = [];
+        $scope.selectedLayer = undefined;
+        $scope.map = L.map('map').setView([60, 17], 5);
+        $scope.message = false;
+
+        L.tileLayer(constants.TRAFFICLAYER, {
+            attribution: constants.ATTRIBUTION
+            }).addTo($scope.map);
+        
+        $scope.time = sessionStorage.getItem(constants.LATESTUPDATE_STORAGE);
+
+        if(trafficDataService.timeToUpdate()){
+            trafficDataService.getTrafficData()
+                .then(getTrafficInfo)
+                .catch(getTrafficError);
+        }else{
+            getTrafficInfo();
+        }
+
+        function getTrafficInfo(){
+            let cachedInfo = trafficDataService.getCachedTrafficData();
             $scope.trafficInfoList = cachedInfo;
-            $scope.selectedLayer = MapLayerService.showAllMarkers(cachedInfo);
+            $scope.selectedLayer = mapLayerService.showAllMarkers(cachedInfo);
             $scope.map.addLayer($scope.selectedLayer);
-            
-        })
-        
-    }
-
-        
-
-
-    //shows corresponding marker-popup
-    //when user clicks row in list
-    $scope.showPopup = (clickedItem) =>{
-        let popup = MapMarkerService.showPopup(clickedItem);
-        popup.openOn($scope.map);
-    };
-    
-    //change visible markers depending on user choice
-    $scope.changeLayer = (filter = null) =>{
-        $scope.map.removeLayer($scope.selectedLayer);
-        
-        if(filter === null){
-            $scope.selectedLayer = MapLayerService.showAllMarkers($scope.trafficInfoList);
-        }else{
-            $scope.selectedLayer = MapLayerService.showSelectedMarkers($scope.trafficInfoList, filter);
-            
         }
-         $scope.map.addLayer($scope.selectedLayer);
         
-        //check to see if layer has markers or not
-        if(Object.keys($scope.selectedLayer._layers).length == 0){
-            //message: category has no info
-            $scope.message = true;
-        }else{
-            $scope.message = false;
+        function getTrafficError(error){
+            console.log(error);
         }
-    }
-   
-    //User filters which markers to see
-    $scope.showAllMarkers = () =>{
-        $scope.changeLayer(null);
-    }
-    
-    $scope.showRoadTraffic = () =>{
-        $scope.changeLayer("0");
-    }
-    
-    $scope.showPublicTraffic = () =>{
-        $scope.changeLayer("1");
-    }
-    
-    $scope.showPlannedTraffic = () =>{
-        $scope.changeLayer("2");
-    }
-    $scope.showOtherTraffic = () =>{
-        $scope.changeLayer("3");
-    }
-});
 
- 
+        //shows corresponding marker-popup
+        //when user clicks row in list
+        $scope.showPopup = (clickedItem) =>{
+            let popup = mapMarkerService.showPopup(clickedItem);
+            popup.openOn($scope.map);
+        };
+
+        //change visible markers depending on user choice
+        $scope.changeLayer = (filter = null) =>{
+            $scope.map.removeLayer($scope.selectedLayer);
+
+            if(filter === null){
+                $scope.selectedLayer = mapLayerService.showAllMarkers($scope.trafficInfoList);
+            }else{
+                $scope.selectedLayer = mapLayerService.showSelectedMarkers($scope.trafficInfoList, filter);
+
+            }
+             $scope.map.addLayer($scope.selectedLayer);
+
+            //check to see if layer has markers or not
+            if(Object.keys($scope.selectedLayer._layers).length == 0){
+                //message: category has no info
+                $scope.message = true;
+            }else{
+                $scope.message = false;
+            }
+        }
+
+        //User filters which markers to see
+        $scope.showAllMarkers = () =>{
+            $scope.changeLayer(null);
+        }
+
+        $scope.showRoadTraffic = () =>{
+            $scope.changeLayer(constants.ROADTRAFFIC);
+        }
+
+        $scope.showPublicTraffic = () =>{
+            $scope.changeLayer(constants.PUBLICTRAFFIC);
+        }
+
+        $scope.showPlannedTraffic = () =>{
+            $scope.changeLayer(constants.PLANNEDTRAFFIC);
+        }
+        $scope.showOtherTraffic = () =>{
+            $scope.changeLayer(constants.OTHERTRAFFIC);
+        }   
+    }
+}());
+
