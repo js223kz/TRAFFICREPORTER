@@ -3,6 +3,8 @@
 **Laboration 3 Webbteknik II. Valfritt programmeringsspråk.**</br>
 **Övriga krav enligt:** https://coursepress.lnu.se/kurs/webbteknik-ii/laborationer/laboration-03/
 
+Använda ramverk/tekniker/språk: Javascript, Node, Angular
+
 Länk till publicerad applikation: https://jotraffic.herokuapp.com/
 
 
