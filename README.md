@@ -34,5 +34,4 @@ och när den datan senast uppdaterades.
 
 **Hur har du tänkt kring optimeringen i din applikation?**</br>
 Jag laddar alla externa bibliotek via CDN och får på så vis automatisk cachning.
-Jag cachar resurser från public-mappen.
 Förfrågningar till servern sker max vid första get request och därefter var 5 minut.
