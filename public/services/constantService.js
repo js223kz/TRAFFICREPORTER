@@ -1,5 +1,5 @@
 (function(){
-    
+    //handles all constants to avoid string dependencies
     angular.module('trafficApp')
         .constant('constants', {
             ROADTRAFFIC: '0',
@@ -7,8 +7,8 @@
             PLANNEDTRAFFIC: '2',
             OTHERTRAFFIC: '3',
         
-            TRAFFICLAYER: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            ATTRIBUTION: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+            TRAFFICLAYER: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            ATTRIBUTION: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         
             TRAFFICINFO_STORAGE: 'trafficinfo',
             LATESTUPDATE_STORAGE: 'latestupdate',

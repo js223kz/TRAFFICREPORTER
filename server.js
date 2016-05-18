@@ -1,15 +1,17 @@
 "use strict";
 // set up ========================
-let express  = require('express'),
-    app      = express(),
-    server     = require('http').createServer(app),
-    morgan = require('morgan'),           
-    bodyParser = require('body-parser'), 
-    port = process.env.PORT || 8080;
-
-
+const   express  = require('express'),
+        app      = express(),
+        server     = require('http').createServer(app),
+        morgan = require('morgan'), 
+        compression = require('compression'),
+        bodyParser = require('body-parser'), 
+        port = process.env.PORT || 8080,
+        oneWeek = 604800000;
+//, {maxAge: oneWeek}
 // configuration =================
-app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
+app.use(compression());
+app.use(express.static(__dirname + '/public'));  // set the static files location /public/img will be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json

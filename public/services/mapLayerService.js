@@ -1,5 +1,6 @@
 "use strict";
 
+//Handles plotting markers on map
 angular.module('trafficApp')
      .factory('mapLayerService', ['mapMarkerService', 'trafficDataService', mapLayerService]);  
 
@@ -10,7 +11,8 @@ function mapLayerService(mapMarkerService, trafficDataService){
         showAllMarkers: showAllMarkers,
         showSelectedMarkers: showSelectedMarkers
     }
-
+    
+    //plots all markers
     function showAllMarkers(trafficInfo){
         let markers = [];
         trafficInfo.forEach((item) =>{
@@ -24,7 +26,8 @@ function mapLayerService(mapMarkerService, trafficDataService){
         return L.layerGroup(markers);
     }
 
-
+    //plots markers for specific category
+    //filter = choosen category
     function showSelectedMarkers(trafficInfo, filter){
         let markers = [];
         trafficInfo.forEach((item) =>{

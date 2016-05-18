@@ -92,8 +92,12 @@ li{
     padding-right: 5px;
    
 }
+.row_header{
+    display:inline-table;
+}
 .row_title{
     font-weight: 600;
+    display: inline-block;
 }
 
 /*Marker popup*/
@@ -128,5 +132,9 @@ li{
 
 #cached_row_title{
     font-weight: 600;
+}
+
+.error_container{
+    
 }
 
