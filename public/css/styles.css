@@ -69,25 +69,25 @@ li{
     opacity: 0.9;
     position: absolute;
     z-index: 10px;
-    max-height: 100px;
-    width: 100%;
-    top: 650px;
+    max-height: 700px;
+    width: 40%;
+    top: 100px;
+    right: 0px;
     overflow: visible;
-    overflow-x: scroll;
+    overflow-y: scroll;
 }
 #traffic_info_list{
     list-style-type: none;
     padding: 0;
-    min-width: 100%;
+    max-width: 100%;
     border-radius: 5px;
-    white-space:nowrap;
+   
 }
 .traffic_info_row{
     height: auto;
     width: auto;
-    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
     margin-top: 5px;
-    display: inline-block;
     padding-left: 5px;
     padding-right: 5px;
    
@@ -123,7 +123,7 @@ li{
     display: inline-block;
 }
 #sr_text{
-    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
     font-size: 0.6em;
     padding: 5px;
     font-family: monospace;

@@ -22,7 +22,6 @@ module.exports = function(app) {
             response.on('end', () =>{
                 //parse xml to json
                 result = parser.toJson(result);
-                console.log("Got a response: ", result);
                 res.send(result);
             });
         }).on('error', function(err){
@@ -32,6 +31,6 @@ module.exports = function(app) {
 
     // application -------------------------------------------------------------
     app.get('/', function(req, res) {
-        res.sendFile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+        res.sendFile('./public/index.html'); 
     });
 };

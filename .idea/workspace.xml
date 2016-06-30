@@ -2,29 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4d78764-30f9-4149-88b9-d8efa45d8683" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.bowerrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/.htaccess" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/controllers/mainController.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/css/styles.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/images/green.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/images/offline.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/images/orange.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/images/red.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/images/shadow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/images/violet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/images/yellow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/partials/mainView.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/services/constantService.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/services/mapLayerService.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/services/mapMarkerService.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/public/services/trafficInfoService.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/routes.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/server.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/offline.jpeg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TRAFFICREPORTS_js223kz.iws" />
@@ -47,7 +24,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
@@ -77,7 +54,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
@@ -147,6 +124,7 @@
         <option value="$PROJECT_DIR$/public/javascripts/main_controller.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
   </component>
@@ -321,7 +299,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1707" y="-380" width="1665" height="1024" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2754159" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13000616" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -382,14 +360,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -407,6 +377,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />

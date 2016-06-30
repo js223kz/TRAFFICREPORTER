@@ -34,6 +34,8 @@
             <!-- list of trafficmessages -->
                 <div id="traffic_info_container">
                     <ul id="traffic_info_list">
+                         <!-- tribute to data supplier -->
+                    <p id="sr_text">Trafikinformation hämtad från Sveriges Radios trafiktjänst</p> 
                         <!-- prefix - before 'createddate gives descending order -->
                         <li class="traffic_info_row" data-ng-click='showPopup(item)' data-ng-repeat="item in trafficInfoList | orderBy:['-createddate', 'title']" >
                             <div class="row_header">
@@ -43,8 +45,7 @@
                             <p class="row_category">{{item.subcategory}}</p>
                         </li>
                      </ul>
-                    <!-- tribute to data supplier -->
-                    <p id="sr_text">Trafikinformation hämtad från Sveriges Radios trafiktjänst</p> 
+                   
             </div>
         </div>
     </div>
